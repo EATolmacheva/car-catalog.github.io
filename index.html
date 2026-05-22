@@ -137,35 +137,124 @@
     </section>
     
     <!-- 5. Горизонтальная галерея (листалка стрелками) -->
-    <section class="mb-24">
+       <section class="mb-24">
         <h2 class="text-3xl font-bold text-center mb-6">Фотогалерея</h2>
-        <p class="text-center text-gray-400 mb-6">Нажми на стрелки, чтобы листать</p>
+        <p class="text-center text-gray-400 mb-6">Листай колёсиком мыши или нажимай стрелки</p>
         <div class="relative">
-            <!-- Контейнер с прокруткой -->
-            <div id="galleryContainer" class="gallery-container overflow-x-hidden">
-                <div id="galleryTrack" class="gallery-track">
-                    <!-- Каждый элемент галереи -->
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1632460622777-388ea7814b95?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+            <!-- Swiper контейнер -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Слайд 1 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1632460622777-388ea7814b95?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1720925380691-916779210650?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    <!-- Слайд 2 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1720925380691-916779210650?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1632460733784-dc1eeae5063f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    <!-- Слайд 3 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1632460733784-dc1eeae5063f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1669488222312-8f5f1704e843?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    <!-- Слайд 4 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1669488222312-8f5f1704e843?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1657385189361-0ae69359156a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    <!-- Слайд 5 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1657385189361-0ae69359156a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1590845777276-4b31f938a47f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    <!-- Слайд 6 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1590845777276-4b31f938a47f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-xl w-full h-64 object-cover shadow-md">
                     </div>
-                    <!-- Добавляй новые картинки сюда по этому же шаблону -->
                 </div>
+                <!-- Кнопки навигации -->
+                <div class="swiper-button-prev !text-white !bg-indigo-600/80 !rounded-full !w-10 !h-10 !after:text-lg"></div>
+                <div class="swiper-button-next !text-white !bg-indigo-600/80 !rounded-full !w-10 !h-10 !after:text-lg"></div>
             </div>
+        </div>
+        <p class="text-center text-gray-500 text-sm mt-4">Бесконечная прокрутка. Листай колёсиком или стрелками.</p>
+    </section>
+
+    <!-- Подключаем Swiper (CSS и JS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 0 40px; /* отступы для стрелок */
+        }
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+        }
+        .swiper-button-prev, .swiper-button-next {
+            background-color: rgba(79, 70, 229, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 9999px;
+        }
+        .swiper-button-prev::after, .swiper-button-next::after {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        .swiper-button-prev:hover, .swiper-button-next:hover {
+            background-color: rgb(99, 102, 241);
+        }
+        @media (max-width: 768px) {
+            .swiper {
+                padding: 0 20px;
+            }
+            .swiper-button-prev, .swiper-button-next {
+                width: 32px;
+                height: 32px;
+            }
+            .swiper-button-prev::after, .swiper-button-next::after {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.mySwiper', {
+                loop: true,                // бесконечная прокрутка
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                mousewheel: {
+                    forceToAxis: true,    // горизонтальное листание колёсиком
+                    sensitivity: 1,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                }
+            });
+        });
+    </script>
             <!-- Кнопки навигации -->
             <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600/80 hover:bg-indigo-500 text-white p-2 rounded-full shadow-lg transition">◀</button>
             <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-indigo-600/80 hover:bg-indigo-500 text-white p-2 rounded-full shadow-lg transition">▶</button>
