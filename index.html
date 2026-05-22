@@ -315,12 +315,17 @@
     });
 </script>
 
-<!-- Падающие лепестки сакуры (🌸, бесконечные, на фоне) -->
+<!-- Падающие лепестки сакуры (🌸, под всем контентом) -->
 <style>
+    /* Поднимаем весь основной контент выше лепестков */
+    main, .fixed.menu, footer, .swiper, section {
+        position: relative;
+        z-index: 1;
+    }
     .sakura-leaf {
         position: fixed;
         top: -20px;
-        z-index: 0;
+        z-index: 0;          /* лепестки под контентом */
         pointer-events: none;
         user-select: none;
         font-family: monospace;
@@ -339,7 +344,7 @@
 </style>
 <script>
     (function() {
-        const maxLeaves = 60;
+        const maxLeaves = 50;
         function createLeaf() {
             if (document.querySelectorAll('.sakura-leaf').length >= maxLeaves) return;
             const leaf = document.createElement('div');
@@ -352,11 +357,9 @@
             document.body.appendChild(leaf);
             leaf.addEventListener('animationend', () => leaf.remove());
         }
-        // Начальная порция
         for (let i = 0; i < 30; i++) {
             setTimeout(createLeaf, i * 80);
         }
-        // Бесконечное добавление
         setInterval(createLeaf, 1500);
     })();
 </script>
