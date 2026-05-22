@@ -345,54 +345,5 @@
         }
     });
 </script>
-
-<!-- Падающие лепестки сакуры (🌸, под всем контентом) -->
-<style>
-    /* Поднимаем весь основной контент выше лепестков */
-    main, .fixed.menu, footer, .swiper, section {
-        position: relative;
-        z-index: 1;
-    }
-    .sakura-leaf {
-        position: fixed;
-        top: -20px;
-        z-index: 0;          /* лепестки под контентом */
-        pointer-events: none;
-        user-select: none;
-        font-family: monospace;
-        will-change: transform;
-    }
-    @keyframes fallSakura {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0.6;
-        }
-        100% {
-            transform: translateY(100vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-</style>
-<script>
-    (function() {
-        const maxLeaves = 50;
-        function createLeaf() {
-            if (document.querySelectorAll('.sakura-leaf').length >= maxLeaves) return;
-            const leaf = document.createElement('div');
-            leaf.className = 'sakura-leaf';
-            leaf.innerHTML = '🌸';
-            leaf.style.left = Math.random() * 100 + '%';
-            leaf.style.fontSize = (Math.random() * 20 + 12) + 'px';
-            leaf.style.animation = `fallSakura ${Math.random() * 8 + 6}s linear forwards`;
-            leaf.style.opacity = Math.random() * 0.5 + 0.2;
-            document.body.appendChild(leaf);
-            leaf.addEventListener('animationend', () => leaf.remove());
-        }
-        for (let i = 0; i < 30; i++) {
-            setTimeout(createLeaf, i * 80);
-        }
-        setInterval(createLeaf, 1500);
-    })();
-</script>
 </body>
 </html>
