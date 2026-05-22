@@ -314,7 +314,8 @@
         }
     });
 </script>
-  <img src="images/sakura-branch.png" alt="Ветка сакуры" class="fixed top-0 left-0 w-48 md:w-64 opacity-40 pointer-events-none z-0">
+  <!-- Ветка сакуры в левом верхнем углу -->
+<img src="images/sakura-branch.png" alt="Ветка сакуры" class="fixed top-0 left-0 w-48 md:w-64 opacity-40 pointer-events-none z-0">
 
 <style>
     .sakura-petal {
@@ -323,18 +324,15 @@
         z-index: 0;
         pointer-events: none;
         user-select: none;
-        animation: fall linear infinite;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        width: 20px;
-        height: 20px;
-        opacity: 0.4;
+        will-change: transform, opacity;
     }
     @keyframes fall {
         0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 0.5;
+            opacity: 0.7;
         }
         100% {
             transform: translateY(100vh) rotate(360deg);
@@ -344,22 +342,38 @@
 </style>
 <script>
     (function() {
-        const petalCount = 60;
-        const petalImage = 'images/sakura-petal.png';
-
-        for (let i = 0; i < petalCount; i++) {
+        const petalImage = 'images/sakura-petal.png';  // путь к вашему PNG
+        const maxPetals = 80;    // максимальное количество лепестков на экране
+        
+        function createPetal() {
+            // Если уже много лепестков, не создаём новые
+            if (document.querySelectorAll('.sakura-petal').length >= maxPetals) return;
+            
             const petal = document.createElement('div');
             petal.classList.add('sakura-petal');
             petal.style.backgroundImage = `url('${petalImage}')`;
             petal.style.left = Math.random() * 100 + '%';
-            const size = Math.random() * 18 + 10;
+            const size = Math.random() * 18 + 10;  // 10-28px
             petal.style.width = size + 'px';
             petal.style.height = size + 'px';
-            petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
-            petal.style.animationDelay = (Math.random() * 20) + 's';
-            petal.style.opacity = Math.random() * 0.4 + 0.2;
+            const duration = Math.random() * 8 + 6;  // 6-14 секунд
+            petal.style.animation = `fall ${duration}s linear forwards`;
+            petal.style.opacity = Math.random() * 0.5 + 0.2;
             document.body.appendChild(petal);
+            
+            // Удалить лепесток после окончания анимации
+            petal.addEventListener('animationend', () => {
+                if (petal && petal.parentNode) petal.remove();
+            });
         }
+        
+        // Создаём начальную партию (30 штук)
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => createPetal(), i * 100);
+        }
+        
+        // Периодически добавляем новые лепестки (каждые 1.5 секунды)
+        setInterval(createPetal, 1500);
     })();
 </script>
 </body>
