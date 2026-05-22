@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarZEnjoyer — главная</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 30%, #0a0f1a, #030507);
+            min-height: 100vh;
+        }
+        .btn {
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="text-white font-sans">
 
+<!-- Меню навигации -->
+<div class="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-md z-50 border-b border-white/10">
+    <div class="max-w-6xl mx-auto flex justify-center gap-8 py-4 text-lg font-semibold">
+        <a href="index.html" class="text-red-500 border-b-2 border-red-500 px-2 pb-1">Главная</a>
+        <a href="catalog.html" class="hover:text-red-400 transition">Каталог</a>
+        <a href="how-it-works.html" class="hover:text-red-400 transition">Как устроено</a>
+        <a href="glossary.html" class="hover:text-red-400 transition">Глоссарий</a>
+    </div>
+</div>
+
+<!-- Основной контент -->
+<main class="max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
+    <h1 class="text-6xl md:text-8xl font-black mb-6">CarZ<span class="text-red-500">Enjoyer</span></h1>
+    <p class="text-xl md:text-2xl text-gray-300 mb-8">Твой гид по автомобильной культуре, тюнингу и тому, как это работает</p>
+    <div class="flex flex-wrap justify-center gap-4">
+        <a href="catalog.html" class="btn bg-red-600 px-6 py-3 rounded-full font-bold hover:bg-red-700">🚗 Смотреть каталог</a>
+        <a href="how-it-works.html" class="btn bg-gray-800 px-6 py-3 rounded-full font-bold hover:bg-gray-700">⚙️ Как устроено</a>
+    </div>
+
+    <div class="mt-20 grid md:grid-cols-3 gap-6 text-left">
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div class="text-4xl mb-3">🇯🇵</div>
+            <h3 class="text-xl font-bold mb-2">JDM культура</h3>
+            <p class="text-gray-400">Японские легенды: Skyline, Supra, RX-7 и их дух</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div class="text-4xl mb-3">🇷🇺</div>
+            <h3 class="text-xl font-bold mb-2">БПАН стиль</h3>
+            <p class="text-gray-400">Русский силовой тюнинг, низкая посадка и карбюратор</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div class="text-4xl mb-3">🎮</div>
+            <h3 class="text-xl font-bold mb-2">Игры и авто</h3>
+            <p class="text-gray-400">Gran Turismo, Forza — машины из пикселей в реальность</p>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center text-gray-500 py-8 text-sm border-t border-white/10 mt-20">
+    CarZEnjoyer — создано с любовью к автомобилям
+</footer>
+</body>
+</html>
