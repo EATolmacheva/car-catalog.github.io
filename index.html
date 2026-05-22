@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CarZEnjoyer — гараж культурных машин</title>
+    <!-- Tailwind CSS для быстрой стилизации -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lenis для плавного скролла -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <!-- GSAP + ScrollTrigger для анимаций -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        body { overflow-x: hidden; }
+        /* Красивый скроллбар */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f0f0f; }
+        ::-webkit-scrollbar-thumb { background: #ff4d4d; border-radius: 10px; }
+        .slide {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
 
+<div class="overflow-hidden">
+    <!-- Горизонтальный контейнер: все слайды будут листаться вбок -->
+    <div id="horizontal-scroll" class="flex">
+        
+        <!-- ========== СЛАЙД 1: JDM Legends ========== -->
+        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-gray-900 via-red-950 to-black">
+            <div class="max-w-3xl">
+                <h2 class="text-7xl md:text-8xl font-black mb-4 tracking-tighter">🇯🇵 JDM<br>Legends</h2>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">Nissan Skyline GT-R, Toyota Supra, Mazda RX-7, Honda NSX — душа японского тюнинга</p>
+                <div class="mt-12 grid grid-cols-2 gap-4 max-w-md mx-auto">
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🏁 2JZ</div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🌀 Роторный</div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">⚡ ATTESA</div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🔧 VTEC</div>
+                </div>
+            </div>
+            <!-- ВРЕМЕННАЯ КАРТИНКА-ЗАГЛУШКА. Замени на свой URL -->
+            <img src="https://placehold.co/900x500/png?text=JDM+Garage" alt="JDM" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
+        </section>
+        
+        <!-- ========== СЛАЙД 2: БПАН Force ========== -->
+        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-stone-800 via-gray-800 to-black">
+            <h2 class="text-7xl md:text-8xl font-black mb-4">🇷🇺 БПАН<br>Force</h2>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">ВАЗ-2106, «Копейка», Нива. Карбюратор, низкая посадка, настоящий характер</p>
+            <div class="flex gap-6 mt-8 flex-wrap justify-center">
+                <span class="bg-amber-800/50 px-4 py-2 rounded-full">🔧 Солекс</span>
+                <span class="bg-amber-800/50 px-4 py-2 rounded-full">🛞 Низкий профиль</span>
+                <span class="bg-amber-800/50 px-4 py-2 rounded-full">💨 Выхлоп «паук»</span>
+            </div>
+            <img src="https://placehold.co/900x500/png?text=BPAN+Crew" alt="BPAN" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
+        </section>
+        
+        <!-- ========== СЛАЙД 3: Gaming Icons ========== -->
+        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-purple-900 via-indigo-900 to-black">
+            <h2 class="text-7xl md:text-8xl font-black mb-4">🎮 Gaming<br>Icons</h2>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">Mazda RX-7 Veilside (NFSU2), Toyota GT-One (Gran Turismo), Skyline R34 (Forza)</p>
+            <div class="flex gap-4 mt-8">
+                <span class="bg-white/20 px-5 py-2 rounded-full">🎮 GT7</span>
+                <span class="bg-white/20 px-5 py-2 rounded-full">🏎️ FH5</span>
+                <span class="bg-white/20 px-5 py-2 rounded-full">🌀 Initial D</span>
+            </div>
+            <img src="https://placehold.co/900x500/png?text=Gaming+Garage" alt="Gaming" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
+        </section>
+        
+        <!-- ========== СЛАЙД 4: Как устроено ========== -->
+        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-cyan-900 via-slate-900 to-black">
+            <h2 class="text-7xl md:text-8xl font-black mb-4">⚙️ Как устроено</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">Роторный двигатель Wankel, Twin-Turbo, полный привод ATTESA — просто о сложном</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 max-w-4xl mx-auto">
+                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">🌀 Роторный мотор — нет поршней, только треугольный ротор</div>
+                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">⚡ Twin-Turbo — две турбины для мгновенного отклика</div>
+                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">🔄 Полный привод — сцепление вязкости или электроника</div>
+            </div>
+            <img src="https://placehold.co/800x400/png?text=Engine+Scheme" class="mt-10 rounded-xl opacity-80">
+        </section>
+        
+        <!-- ========== СЛАЙД 5: Drift Paradise ========== -->
+        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-orange-900 via-red-900 to-black">
+            <h2 class="text-7xl md:text-8xl font-black mb-4">🔥 Drift<br>Paradise</h2>
+            <p class="text-xl text-gray-300 max-w-xl">Угол атаки, дым шин, управляемый занос — искусство дрифта</p>
+            <div class="mt-8 flex gap-4">
+                <span class="bg-red-600/50 px-5 py-2 rounded-full">🚗 AE86</span>
+                <span class="bg-red-600/50 px-5 py-2 rounded-full">🌀 Silvia S15</span>
+                <span class="bg-red-600/50 px-5 py-2 rounded-full">💨 LSD</span>
+            </div>
+            <img src="https://placehold.co/900x500/png?text=Drift+Action" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
+        </section>
+        
+        <!-- 👇 СЮДА МОЖНО ДОБАВЛЯТЬ НОВЫЕ СЛАЙДЫ (копируй section и вставляй) -->
+        
+    </div>
+</div>
+
+<script>
+    // Включение плавного скролла Lenis
+    const lenis = new Lenis({
+        lerp: 0.08,
+        smoothWheel: true,
+        wheelMultiplier: 1,
+    });
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    
+    // Регистрация плагина GSAP
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Горизонтальная прокрутка для всех слайдов
+    let slides = gsap.utils.toArray("#horizontal-scroll > section");
+    let totalSlides = slides.length;
+    let scrollTween = gsap.to("#horizontal-scroll", {
+        xPercent: -100 * (totalSlides - 1),
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#horizontal-scroll",
+            pin: true,
+            scrub: 0.8,
+            end: `+=${window.innerWidth * (totalSlides - 1)}`,
+            invalidateOnRefresh: true,
+        }
+    });
+    
+    // Эффект наслоения: активный слайд немного увеличивается
+    slides.forEach((slide, i) => {
+        ScrollTrigger.create({
+            trigger: slide,
+            containerAnimation: scrollTween,
+            start: "left center",
+            end: "right center",
+            onToggle: (self) => {
+                if (self.isActive) {
+                    gsap.to(slide, { scale: 1.05, duration: 0.4, ease: "back.out(0.3)" });
+                } else {
+                    gsap.to(slide, { scale: 1, duration: 0.4, ease: "power2.out" });
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
