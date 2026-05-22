@@ -315,23 +315,21 @@
     });
 </script>
 
-<!-- Падающие лепестки (PNG, бесконечные) -->
+<!-- Падающие лепестки сакуры (🌸, бесконечные, на фоне) -->
 <style>
-    .petal {
+    .sakura-leaf {
         position: fixed;
         top: -20px;
         z-index: 0;
         pointer-events: none;
         user-select: none;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
+        font-family: monospace;
         will-change: transform;
     }
-    @keyframes fallPetals {
+    @keyframes fallSakura {
         0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 0.8;
+            opacity: 0.6;
         }
         100% {
             transform: translateY(100vh) rotate(360deg);
@@ -341,32 +339,25 @@
 </style>
 <script>
     (function() {
-        // Используем надёжное изображение лепестка (розовый цветок с прозрачным фоном)
-        const petalUrl = "https://www.magnific.com/ru/free-psd/pink-blossom-delicate-spring-flower_409868079.htm#fromView=keyword&page=1&position=9&uuid=dd7bfbd1-2a2b-49a7-a393-3a4d63636871&query=%D0%9B%D0%B8%D1%81%D1%82%D1%8F+%D1%81%D0%B0%D0%BA%D1%83%D1%80%D1%8B+png"; // та же иконка цветка, подойдёт
-        const maxPetals = 50;
-        
-        function createPetal() {
-            if (document.querySelectorAll('.petal').length >= maxPetals) return;
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.backgroundImage = `url('${petalUrl}')`;
-            petal.style.left = Math.random() * 100 + '%';
-            const size = Math.random() * 20 + 12; // 12-32px
-            petal.style.width = size + 'px';
-            petal.style.height = size + 'px';
-            const duration = Math.random() * 8 + 5; // 5-13 секунд
-            petal.style.animation = `fallPetals ${duration}s linear forwards`;
-            petal.style.opacity = Math.random() * 0.5 + 0.2;
-            document.body.appendChild(petal);
-            petal.addEventListener('animationend', () => petal.remove());
+        const maxLeaves = 60;
+        function createLeaf() {
+            if (document.querySelectorAll('.sakura-leaf').length >= maxLeaves) return;
+            const leaf = document.createElement('div');
+            leaf.className = 'sakura-leaf';
+            leaf.innerHTML = '🌸';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.fontSize = (Math.random() * 20 + 12) + 'px';
+            leaf.style.animation = `fallSakura ${Math.random() * 8 + 6}s linear forwards`;
+            leaf.style.opacity = Math.random() * 0.5 + 0.2;
+            document.body.appendChild(leaf);
+            leaf.addEventListener('animationend', () => leaf.remove());
         }
-        
-        // Начальные 25 лепестков
-        for (let i = 0; i < 25; i++) {
-            setTimeout(createPetal, i * 80);
+        // Начальная порция
+        for (let i = 0; i < 30; i++) {
+            setTimeout(createLeaf, i * 80);
         }
-        // Добавляем новые каждые 2 секунды
-        setInterval(createPetal, 2000);
+        // Бесконечное добавление
+        setInterval(createLeaf, 1500);
     })();
 </script>
 </body>
