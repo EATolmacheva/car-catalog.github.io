@@ -314,20 +314,27 @@
         }
     });
 </script>
-    <style>
-    .petal {
+  <img src="images/sakura-branch.png" alt="Ветка сакуры" class="fixed top-0 left-0 w-48 md:w-64 opacity-40 pointer-events-none z-0">
+
+<style>
+    .sakura-petal {
         position: fixed;
         top: -20px;
-        z-index: 99999;
+        z-index: 0;
         pointer-events: none;
         user-select: none;
-        animation: fall linear forwards;
-        font-size: 20px;
+        animation: fall linear infinite;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+        opacity: 0.4;
     }
     @keyframes fall {
         0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 1;
+            opacity: 0.5;
         }
         100% {
             transform: translateY(100vh) rotate(360deg);
@@ -337,17 +344,20 @@
 </style>
 <script>
     (function() {
-        const petalCount = 40;
-        const petals = ['🌸', '🌸', '🌸', '🌸']; // можно заменить на PNG
+        const petalCount = 60;
+        const petalImage = 'images/sakura-petal.png';
+
         for (let i = 0; i < petalCount; i++) {
             const petal = document.createElement('div');
-            petal.classList.add('petal');
-            petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+            petal.classList.add('sakura-petal');
+            petal.style.backgroundImage = `url('${petalImage}')`;
             petal.style.left = Math.random() * 100 + '%';
-            petal.style.animationDuration = (Math.random() * 4 + 4) + 's'; // 4-8 секунд
-            petal.style.animationDelay = (Math.random() * 15) + 's';
-            petal.style.opacity = Math.random() * 0.5 + 0.3;
-            petal.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            const size = Math.random() * 18 + 10;
+            petal.style.width = size + 'px';
+            petal.style.height = size + 'px';
+            petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            petal.style.animationDelay = (Math.random() * 20) + 's';
+            petal.style.opacity = Math.random() * 0.4 + 0.2;
             document.body.appendChild(petal);
         }
     })();
