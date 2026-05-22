@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarZEnjoyer — главная</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:opsz@14..32&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -20,24 +19,26 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Кнопки карусели (оставляем как есть) */
-        .gallery-container {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        /* Текстура шума поверх фона */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
         }
-        .gallery-track {
-            display: flex;
-            gap: 1.5rem;
-            transition: transform 0.3s ease;
+        /* Неоновая подсветка карточек */
+        .card-hover {
+            transition: all 0.3s ease;
         }
-        .gallery-item {
-            flex: 0 0 auto;
-            width: 280px;
-        }
-        @media (min-width: 768px) {
-            .gallery-item {
-                width: 320px;
-            }
+        .card-hover:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            transform: translateY(-4px);
         }
         /* Кастомный курсор */
         .custom-cursor {
