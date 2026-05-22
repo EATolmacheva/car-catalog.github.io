@@ -2,144 +2,259 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>CarZEnjoyer — гараж культурных машин</title>
-    <!-- Tailwind CSS для быстрой стилизации -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarZEnjoyer — каталог автомобилей</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lenis для плавного скролла -->
+    <!-- Плавный скролл Lenis (опционально, для красоты) -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
-    <!-- GSAP + ScrollTrigger для анимаций -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        body { overflow-x: hidden; }
-        /* Красивый скроллбар */
+        /* Отключаем горизонтальный скролл, если что */
+        body {
+            overflow-x: hidden;
+        }
+        /* Кастомный скроллбар */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0f0f0f; }
         ::-webkit-scrollbar-thumb { background: #ff4d4d; border-radius: 10px; }
-        .slide {
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        /* Для плавного перехода при клике на кнопки */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Фиксированное меню */
+        .nav-menu {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 60px;
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .nav-btn:hover {
+            background: #ff4d4d;
+            color: black;
+        }
+        /* Каждая секция — 100vh */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+        }
+        /* Карточки внутри секции */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        .car-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .car-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.1);
+        }
+        .car-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .car-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 1rem 0.5rem;
+        }
+        .car-card p {
+            margin: 0 1rem 1rem;
+            color: #ccc;
         }
     </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-black text-white">
 
-<div class="overflow-hidden">
-    <!-- Горизонтальный контейнер: все слайды будут листаться вбок -->
-    <div id="horizontal-scroll" class="flex">
-        
-        <!-- ========== СЛАЙД 1: JDM Legends ========== -->
-        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-gray-900 via-red-950 to-black">
-            <div class="max-w-3xl">
-                <h2 class="text-7xl md:text-8xl font-black mb-4 tracking-tighter">🇯🇵 JDM<br>Legends</h2>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">Nissan Skyline GT-R, Toyota Supra, Mazda RX-7, Honda NSX — душа японского тюнинга</p>
-                <div class="mt-12 grid grid-cols-2 gap-4 max-w-md mx-auto">
-                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🏁 2JZ</div>
-                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🌀 Роторный</div>
-                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">⚡ ATTESA</div>
-                    <div class="bg-white/10 backdrop-blur rounded-xl p-3">🔧 VTEC</div>
-                </div>
-            </div>
-            <!-- ВРЕМЕННАЯ КАРТИНКА-ЗАГЛУШКА. Замени на свой URL -->
-            <img src="https://placehold.co/900x500/png?text=JDM+Garage" alt="JDM" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
-        </section>
-        
-        <!-- ========== СЛАЙД 2: БПАН Force ========== -->
-        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-stone-800 via-gray-800 to-black">
-            <h2 class="text-7xl md:text-8xl font-black mb-4">🇷🇺 БПАН<br>Force</h2>
-            <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">ВАЗ-2106, «Копейка», Нива. Карбюратор, низкая посадка, настоящий характер</p>
-            <div class="flex gap-6 mt-8 flex-wrap justify-center">
-                <span class="bg-amber-800/50 px-4 py-2 rounded-full">🔧 Солекс</span>
-                <span class="bg-amber-800/50 px-4 py-2 rounded-full">🛞 Низкий профиль</span>
-                <span class="bg-amber-800/50 px-4 py-2 rounded-full">💨 Выхлоп «паук»</span>
-            </div>
-            <img src="https://placehold.co/900x500/png?text=BPAN+Crew" alt="BPAN" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
-        </section>
-        
-        <!-- ========== СЛАЙД 3: Gaming Icons ========== -->
-        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-purple-900 via-indigo-900 to-black">
-            <h2 class="text-7xl md:text-8xl font-black mb-4">🎮 Gaming<br>Icons</h2>
-            <p class="text-xl md:text-2xl text-gray-300 max-w-xl mx-auto">Mazda RX-7 Veilside (NFSU2), Toyota GT-One (Gran Turismo), Skyline R34 (Forza)</p>
-            <div class="flex gap-4 mt-8">
-                <span class="bg-white/20 px-5 py-2 rounded-full">🎮 GT7</span>
-                <span class="bg-white/20 px-5 py-2 rounded-full">🏎️ FH5</span>
-                <span class="bg-white/20 px-5 py-2 rounded-full">🌀 Initial D</span>
-            </div>
-            <img src="https://placehold.co/900x500/png?text=Gaming+Garage" alt="Gaming" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
-        </section>
-        
-        <!-- ========== СЛАЙД 4: Как устроено ========== -->
-        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-cyan-900 via-slate-900 to-black">
-            <h2 class="text-7xl md:text-8xl font-black mb-4">⚙️ Как устроено</h2>
-            <p class="text-xl text-gray-300 max-w-2xl mx-auto">Роторный двигатель Wankel, Twin-Turbo, полный привод ATTESA — просто о сложном</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 max-w-4xl mx-auto">
-                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">🌀 Роторный мотор — нет поршней, только треугольный ротор</div>
-                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">⚡ Twin-Turbo — две турбины для мгновенного отклика</div>
-                <div class="bg-black/40 backdrop-blur p-5 rounded-2xl">🔄 Полный привод — сцепление вязкости или электроника</div>
-            </div>
-            <img src="https://placehold.co/800x400/png?text=Engine+Scheme" class="mt-10 rounded-xl opacity-80">
-        </section>
-        
-        <!-- ========== СЛАЙД 5: Drift Paradise ========== -->
-        <section class="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-gradient-to-br from-orange-900 via-red-900 to-black">
-            <h2 class="text-7xl md:text-8xl font-black mb-4">🔥 Drift<br>Paradise</h2>
-            <p class="text-xl text-gray-300 max-w-xl">Угол атаки, дым шин, управляемый занос — искусство дрифта</p>
-            <div class="mt-8 flex gap-4">
-                <span class="bg-red-600/50 px-5 py-2 rounded-full">🚗 AE86</span>
-                <span class="bg-red-600/50 px-5 py-2 rounded-full">🌀 Silvia S15</span>
-                <span class="bg-red-600/50 px-5 py-2 rounded-full">💨 LSD</span>
-            </div>
-            <img src="https://placehold.co/900x500/png?text=Drift+Action" class="mt-12 rounded-2xl shadow-2xl w-3/4 max-w-2xl">
-        </section>
-        
-        <!-- 👇 СЮДА МОЖНО ДОБАВЛЯТЬ НОВЫЕ СЛАЙДЫ (копируй section и вставляй) -->
-        
-    </div>
+<!-- Плавающее меню навигации (кнопки) -->
+<div class="nav-menu">
+    <button class="nav-btn" data-section="hero">Главная</button>
+    <button class="nav-btn" data-section="jdm">JDM</button>
+    <button class="nav-btn" data-section="bpan">БПАН</button>
+    <button class="nav-btn" data-section="gaming">Gaming</button>
+    <button class="nav-btn" data-section="howitworks">Устройство</button>
+    <button class="nav-btn" data-section="drift">Drift</button>
 </div>
 
+<!-- Секция 0: Титульная (Hero) -->
+<section id="hero" class="section bg-gradient-to-br from-gray-900 via-black to-gray-900 text-center">
+    <h1 class="text-7xl md:text-8xl font-black mb-4">CarZ<span class="text-red-500">Enjoyer</span></h1>
+    <p class="text-xl max-w-2xl mx-auto text-gray-300">Каталог автомобилей, которые живут в культуре, играх и наших сердцах</p>
+    <div class="mt-12 flex gap-4 flex-wrap justify-center">
+        <button class="nav-btn bg-red-600 hover:bg-red-500" data-section="jdm">JDM →</button>
+        <button class="nav-btn bg-stone-700 hover:bg-stone-600" data-section="bpan">БПАН →</button>
+        <button class="nav-btn bg-purple-800 hover:bg-purple-700" data-section="gaming">Gaming →</button>
+    </div>
+</section>
+
+<!-- Секция 1: JDM -->
+<section id="jdm" class="section bg-gradient-to-br from-gray-900 via-red-950 to-black">
+    <h2 class="text-5xl md:text-6xl font-black">🇯🇵 JDM Legends</h2>
+    <p class="text-xl text-gray-300 max-w-2xl text-center mt-2">Легенды японского тюнинга: Skyline, Supra, RX-7, NSX</p>
+    <div class="card-grid">
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Nissan+Skyline+R34" alt="Skyline">
+            <h3>Nissan Skyline GT-R R34</h3>
+            <p>RB26DETT, ATTESA, 280 л.с. (а фактически больше) — икона Gran Turismo и Fast & Furious</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Toyota+Supra" alt="Supra">
+            <h3>Toyota Supra MK4</h3>
+            <p>2JZ-GTE, 320 л.с., потенциал тюнинга до 1000+ л.с. — королева дрифта и дрэга</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Mazda+RX-7" alt="RX-7">
+            <h3>Mazda RX-7 FD</h3>
+            <p>Роторный двигатель 13B-REW, лёгкий баланс, звук как у Formula 1 — культовая машина</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секция 2: БПАН -->
+<section id="bpan" class="section bg-gradient-to-br from-stone-800 via-gray-800 to-black">
+    <h2 class="text-5xl md:text-6xl font-black">🇷🇺 БПАН Force</h2>
+    <p class="text-xl text-gray-300 max-w-2xl text-center mt-2">Силовой тюнинг по-русски: низкая посадка, карбюратор, характер</p>
+    <div class="card-grid">
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=VAZ+2106" alt="2106">
+            <h3>ВАЗ-2106</h3>
+            <p>Классика Жигулей, 1.6 л, карбюратор "Солекс", диски-катки — стиль "колхозный тюнинг"</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Lada+Niva" alt="Niva">
+            <h3>Lada Niva Bronto</h3>
+            <p>Вездеход на низкой резине? А почему бы и нет. БПАН - это смелость и никаких границ</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=VAZ+2105" alt="2105">
+            <h3>ВАЗ-2105 "Копейка"</h3>
+            <p>Самая народная машина, превращённая в дрифт-кар или низкий "пенёк" с выхлопом</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секция 3: Gaming Icons -->
+<section id="gaming" class="section bg-gradient-to-br from-purple-900 via-indigo-900 to-black">
+    <h2 class="text-5xl md:text-6xl font-black">🎮 Gaming Icons</h2>
+    <p class="text-xl text-gray-300 max-w-2xl text-center mt-2">Машины, которые стали легендами благодаря видеоиграм</p>
+    <div class="card-grid">
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=NFSU2+RX-7" alt="RX-7 Veilside">
+            <h3>Mazda RX-7 Veilside</h3>
+            <p>Need for Speed Underground 2 — та самая обложка, широкий бодикит и роторный вой</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Gran+Turismo+R34" alt="GT-R R34">
+            <h3>Nissan Skyline R34 GT-R</h3>
+            <p>Главная машина Gran Turismo, символ PlayStation и японского инжиниринга</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Forza+Horizon+Supra" alt="Supra">
+            <h3>Toyota Supra</h3>
+            <p>Forza Horizon 5 — дрифт, Drag race, фотосессии на пляже, идеальная песочница</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секция 4: Как устроено -->
+<section id="howitworks" class="section bg-gradient-to-br from-cyan-900 via-slate-900 to-black">
+    <h2 class="text-5xl md:text-6xl font-black">⚙️ Как устроено</h2>
+    <p class="text-xl text-gray-300 max-w-2xl text-center mt-2">Коротко о сердце автомобиля и тюнинга</p>
+    <div class="card-grid">
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Rotary+Engine" alt="rotary">
+            <h3>Роторный двигатель</h3>
+            <p>Нет поршней, есть треугольный ротор. Компактный, мощный, но любит масло. Пример: Mazda RX-7.</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Twin-Turbo" alt="twinturbo">
+            <h3>Twin-Turbo</h3>
+            <p>Две турбины: маленькая для низа, большая для верха — мгновенный отклик. Супра, R32, R34</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Drift+LSD" alt="LSD">
+            <h3>Дифференциал повышенного трения (LSD)</h3>
+            <p>Позволяет колёсам вращаться с разной скоростью для контролируемого заноса. Сердце дрифта.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секция 5: Drift Paradise -->
+<section id="drift" class="section bg-gradient-to-br from-orange-900 via-red-900 to-black">
+    <h2 class="text-5xl md:text-6xl font-black">🔥 Drift Paradise</h2>
+    <p class="text-xl text-gray-300 max-w-2xl text-center mt-2">Управляемый занос, дым шин и угол атаки</p>
+    <div class="card-grid">
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=AE86" alt="AE86">
+            <h3>Toyota AE86</h3>
+            <p>Король дрифта (Initial D). Задний привод, лёгкая, твин-кем. Идеальная для горных дорог.</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=Silvia+S15" alt="Silvia">
+            <h3>Nissan Silvia S15</h3>
+            <p>SR20DET, японский дрифт-спецификация. SR20DET, угол атаки 45 градусов — икона Formula Drift.</p>
+        </div>
+        <div class="car-card">
+            <img src="https://placehold.co/600x400/png?text=BMW+E36" alt="E36">
+            <h3>BMW E36 Drift</h3>
+            <p>Рядная шестёрка, сварка диффа, гидроручник. Немецкая база для дрифта на европейских трассах.</p>
+        </div>
+    </div>
+</section>
+
 <script>
-    // Включение плавного скролла Lenis
+    // Инициализация плавного скролла Lenis (делает прокрутку очень плавной)
     const lenis = new Lenis({
         lerp: 0.08,
         smoothWheel: true,
-        wheelMultiplier: 1,
     });
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-    
-    // Регистрация плагина GSAP
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Горизонтальная прокрутка для всех слайдов
-    let slides = gsap.utils.toArray("#horizontal-scroll > section");
-    let totalSlides = slides.length;
-    let scrollTween = gsap.to("#horizontal-scroll", {
-        xPercent: -100 * (totalSlides - 1),
-        ease: "none",
-        scrollTrigger: {
-            trigger: "#horizontal-scroll",
-            pin: true,
-            scrub: 0.8,
-            end: `+=${window.innerWidth * (totalSlides - 1)}`,
-            invalidateOnRefresh: true,
-        }
-    });
-    
-    // Эффект наслоения: активный слайд немного увеличивается
-    slides.forEach((slide, i) => {
-        ScrollTrigger.create({
-            trigger: slide,
-            containerAnimation: scrollTween,
-            start: "left center",
-            end: "right center",
-            onToggle: (self) => {
-                if (self.isActive) {
-                    gsap.to(slide, { scale: 1.05, duration: 0.4, ease: "back.out(0.3)" });
-                } else {
-                    gsap.to(slide, { scale: 1, duration: 0.4, ease: "power2.out" });
+
+    // Скрипт для кнопок: плавный переход к секции
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const sectionId = btn.getAttribute('data-section');
+            if (sectionId) {
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    lenis.scrollTo(target, { offset: 0, duration: 1.2 });
                 }
             }
         });
