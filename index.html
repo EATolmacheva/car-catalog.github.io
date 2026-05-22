@@ -315,12 +315,14 @@
     });
 </script>
     <style>
-    .sakura-leaf {
+    .petal {
         position: fixed;
         top: -20px;
-        z-index: 9999;
+        z-index: 99999;
         pointer-events: none;
+        user-select: none;
         animation: fall linear forwards;
+        font-size: 20px;
     }
     @keyframes fall {
         0% {
@@ -335,20 +337,18 @@
 </style>
 <script>
     (function() {
-        // Количество лепестков
-        const leafCount = 30;
-        // Символы или можно использовать маленькие изображения
-        const leaves = ['<img src="images/sakura-petal.png" style="width:20px; height:auto;">', ...];
-        for (let i = 0; i < leafCount; i++) {
-            const leaf = document.createElement('div');
-            leaf.innerHTML = leaves[Math.floor(Math.random() * leaves.length)];
-            leaf.classList.add('sakura-leaf');
-            leaf.style.left = Math.random() * 100 + '%';
-            leaf.style.fontSize = (Math.random() * 20 + 10) + 'px'; // от 10 до 30px
-            leaf.style.animationDuration = (Math.random() * 5 + 5) + 's'; // от 5 до 10 секунд
-            leaf.style.animationDelay = (Math.random() * 10) + 's';
-            leaf.style.opacity = Math.random() * 0.6 + 0.2;
-            document.body.appendChild(leaf);
+        const petalCount = 40;
+        const petals = ['🌸', '🌸', '🌸', '🌸']; // можно заменить на PNG
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDuration = (Math.random() * 4 + 4) + 's'; // 4-8 секунд
+            petal.style.animationDelay = (Math.random() * 15) + 's';
+            petal.style.opacity = Math.random() * 0.5 + 0.3;
+            petal.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            document.body.appendChild(petal);
         }
     })();
 </script>
