@@ -314,11 +314,12 @@
         }
     });
 </script>
-  <!-- Ветка сакуры в левом верхнем углу -->
-<img src="images/sakura-branch.png" alt="Ветка сакуры" class="fixed top-0 left-0 w-48 md:w-64 opacity-40 pointer-events-none z-0">
+  <!-- Ветка сакуры (левая верхняя, из интернета с прозрачным фоном) -->
+<img src="https://cdn-icons-png.flaticon.com/512/7930/7930192.png" alt="Ветка сакуры" class="fixed top-0 left-0 w-40 md:w-56 opacity-30 pointer-events-none z-0" style="transform: scaleX(-1);">
 
+<!-- Падающие лепестки (PNG, бесконечные) -->
 <style>
-    .sakura-petal {
+    .petal {
         position: fixed;
         top: -20px;
         z-index: 0;
@@ -327,12 +328,12 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        will-change: transform, opacity;
+        will-change: transform;
     }
-    @keyframes fall {
+    @keyframes fallPetals {
         0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 0.7;
+            opacity: 0.8;
         }
         100% {
             transform: translateY(100vh) rotate(360deg);
@@ -342,38 +343,32 @@
 </style>
 <script>
     (function() {
-        const petalImage = 'images/sakura-petal.png';  // путь к вашему PNG
-        const maxPetals = 80;    // максимальное количество лепестков на экране
+        // Используем надёжное изображение лепестка (розовый цветок с прозрачным фоном)
+        const petalUrl = "https://cdn-icons-png.flaticon.com/512/7930/7930192.png"; // та же иконка цветка, подойдёт
+        const maxPetals = 50;
         
         function createPetal() {
-            // Если уже много лепестков, не создаём новые
-            if (document.querySelectorAll('.sakura-petal').length >= maxPetals) return;
-            
+            if (document.querySelectorAll('.petal').length >= maxPetals) return;
             const petal = document.createElement('div');
-            petal.classList.add('sakura-petal');
-            petal.style.backgroundImage = `url('${petalImage}')`;
+            petal.className = 'petal';
+            petal.style.backgroundImage = `url('${petalUrl}')`;
             petal.style.left = Math.random() * 100 + '%';
-            const size = Math.random() * 18 + 10;  // 10-28px
+            const size = Math.random() * 20 + 12; // 12-32px
             petal.style.width = size + 'px';
             petal.style.height = size + 'px';
-            const duration = Math.random() * 8 + 6;  // 6-14 секунд
-            petal.style.animation = `fall ${duration}s linear forwards`;
+            const duration = Math.random() * 8 + 5; // 5-13 секунд
+            petal.style.animation = `fallPetals ${duration}s linear forwards`;
             petal.style.opacity = Math.random() * 0.5 + 0.2;
             document.body.appendChild(petal);
-            
-            // Удалить лепесток после окончания анимации
-            petal.addEventListener('animationend', () => {
-                if (petal && petal.parentNode) petal.remove();
-            });
+            petal.addEventListener('animationend', () => petal.remove());
         }
         
-        // Создаём начальную партию (30 штук)
-        for (let i = 0; i < 30; i++) {
-            setTimeout(() => createPetal(), i * 100);
+        // Начальные 25 лепестков
+        for (let i = 0; i < 25; i++) {
+            setTimeout(createPetal, i * 80);
         }
-        
-        // Периодически добавляем новые лепестки (каждые 1.5 секунды)
-        setInterval(createPetal, 1500);
+        // Добавляем новые каждые 2 секунды
+        setInterval(createPetal, 2000);
     })();
 </script>
 </body>
