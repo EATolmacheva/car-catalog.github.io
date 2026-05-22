@@ -7,57 +7,199 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #1a1c1e;
+            background-color: #1a1c1e; /* тёмно-серый фон */
         }
-        .btn {
-            transition: all 0.2s ease;
+        /* Плавная прокрутка (необязательно) */
+        html {
+            scroll-behavior: smooth;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+        /* Кнопки карусели */
+        .gallery-container {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .gallery-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 280px;
+        }
+        @media (min-width: 768px) {
+            .gallery-item {
+                width: 320px;
+            }
         }
     </style>
 </head>
 <body class="text-white font-sans">
 
+<!-- Фиксированное меню (как на других страницах) -->
 <div class="fixed top-0 left-0 w-full bg-neutral-900/80 backdrop-blur-md z-50 border-b border-white/10">
     <div class="max-w-6xl mx-auto flex justify-center gap-8 py-4 text-lg font-semibold">
-        <a href="index.html" class="text-indigo-500 border-b-2 border-indigo-500 px-2 pb-1">Главная</a>
-        <a href="catalog.html" class="hover:text-indigo-400 transition">Каталог</a>
-        <a href="how-it-works.html" class="hover:text-indigo-400 transition">Как устроено</a>
-        <a href="glossary.html" class="hover:text-indigo-400 transition">Глоссарий</a>
+        <a href="index.html" class="text-indigo-400 border-b-2 border-indigo-400 px-2 pb-1">Главная</a>
+        <a href="catalog.html" class="hover:text-indigo-300 transition">Каталог</a>
+        <a href="how-it-works.html" class="hover:text-indigo-300 transition">Как устроено</a>
+        <a href="glossary.html" class="hover:text-indigo-300 transition">Глоссарий</a>
     </div>
 </div>
 
-<main class="max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
-    <h1 class="text-6xl md:text-8xl font-black mb-6">CarZ<span class="text-indigo-500">Enjoyer</span></h1>
-    <p class="text-xl md:text-2xl text-gray-300 mb-8">Твой гид по автомобильной культуре, тюнингу и тому, как это работает</p>
-    <div class="flex flex-wrap justify-center gap-4">
-        <a href="catalog.html" class="btn bg-indigo-600 px-6 py-3 rounded-full font-bold hover:bg-indigo-700">🚗 Смотреть каталог</a>
-        <a href="how-it-works.html" class="btn bg-neutral-700 px-6 py-3 rounded-full font-bold hover:bg-neutral-600">⚙️ Как устроено</a>
-    </div>
+<main class="max-w-5xl mx-auto px-6 pt-24 pb-16">
+    
+    <!-- 1. Блок приветствия + описание (ты напишешь позже) -->
+    <section class="text-center mb-20">
+        <h1 class="text-6xl md:text-7xl font-black mb-4">CarZ<span class="text-indigo-400">Enjoyer</span></h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto" id="main-description">
+            <!-- СЮДА НАПИШИ СВОЁ ОПИСАНИЕ ПОТОМ -->
+            Здесь будет твой уникальный текст о проекте. Например: "Погружение в мир JDM, БПАН, дрифта и игр. Рассказываем о машинах и их устройстве."
+        </p>
+    </section>
 
-    <div class="mt-20 grid md:grid-cols-3 gap-6 text-left">
-        <div class="bg-neutral-800/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-700">
-            <div class="text-4xl mb-3">🇯🇵</div>
-            <h3 class="text-xl font-bold mb-2">JDM культура</h3>
-            <p class="text-gray-400">Японские легенды: Skyline, Supra, RX-7 и их дух</p>
+    <!-- 2. Блок: картинка + текст (можно поменять местами) -->
+    <section class="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <div>
+            <img src="https://placehold.co/600x400/png?text=Car+Culture" alt="Автомобильная культура" class="rounded-2xl shadow-xl w-full">
         </div>
-        <div class="bg-neutral-800/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-700">
-            <div class="text-4xl mb-3">🇷🇺</div>
-            <h3 class="text-xl font-bold mb-2">БПАН стиль</h3>
-            <p class="text-gray-400">Русский силовой тюнинг, низкая посадка и карбюратор</p>
+        <div>
+            <h2 class="text-3xl font-bold mb-4 text-indigo-400">Больше, чем просто машины</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Здесь ты найдёшь информацию о японских легендах, российском стиле БПАН, гоночных играх и техническом устройстве автомобилей. Мы создаём место, где автокультура оживает.
+            </p>
         </div>
-        <div class="bg-neutral-800/60 backdrop-blur-sm rounded-2xl p-6 border border-neutral-700">
-            <div class="text-4xl mb-3">🎮</div>
-            <h3 class="text-xl font-bold mb-2">Игры и авто</h3>
-            <p class="text-gray-400">Gran Turismo, Forza — машины из пикселей в реальность</p>
+    </section>
+
+    <!-- 3. Описание разделов сайта (краткие карточки) -->
+    <section class="mb-24">
+        <h2 class="text-3xl font-bold text-center mb-10">Что внутри?</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-neutral-800/50 p-6 rounded-2xl border border-neutral-700 text-center">
+                <div class="text-4xl mb-3">📖</div>
+                <h3 class="text-xl font-semibold mb-2">Каталог машин</h3>
+                <p class="text-gray-400">Подробные карточки автомобилей с фото, характеристиками и историей.</p>
+            </div>
+            <div class="bg-neutral-800/50 p-6 rounded-2xl border border-neutral-700 text-center">
+                <div class="text-4xl mb-3">⚙️</div>
+                <h3 class="text-xl font-semibold mb-2">Как устроено</h3>
+                <p class="text-gray-400">Простые объяснения сложных узлов: двигатели, турбины, подвеска.</p>
+            </div>
+            <div class="bg-neutral-800/50 p-6 rounded-2xl border border-neutral-700 text-center">
+                <div class="text-4xl mb-3">📚</div>
+                <h3 class="text-xl font-semibold mb-2">Глоссарий</h3>
+                <p class="text-gray-400">Словарь терминов тюнинга и автокультуры.</p>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- 4. Пример карточки машины (одна, как превью) -->
+    <section class="mb-24">
+        <h2 class="text-3xl font-bold text-center mb-10">Пример из каталога</h2>
+        <div class="max-w-md mx-auto bg-neutral-800/70 rounded-2xl overflow-hidden border border-neutral-700 hover:scale-105 transition">
+            <img src="https://placehold.co/600x400/png?text=Nissan+Skyline" alt="Nissan Skyline" class="w-full h-48 object-cover">
+            <div class="p-5">
+                <h3 class="text-2xl font-bold">Nissan Skyline GT-R R34</h3>
+                <p class="text-gray-400 mt-2">2.6L twin-turbo RB26, полный привод ATTESA. Легенда JDM и Gran Turismo.</p>
+                <a href="catalog.html" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300">Подробнее →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Горизонтальная галерея (листалка стрелками) -->
+    <section class="mb-24">
+        <h2 class="text-3xl font-bold text-center mb-6">Фотогалерея</h2>
+        <p class="text-center text-gray-400 mb-6">Нажми на стрелки, чтобы листать</p>
+        <div class="relative">
+            <!-- Контейнер с прокруткой -->
+            <div id="galleryContainer" class="gallery-container overflow-x-hidden">
+                <div id="galleryTrack" class="gallery-track">
+                    <!-- Каждый элемент галереи -->
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=JDM+Car+1" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=JDM+Car+2" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=JDM+Car+3" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=Drift+Action" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=BPAN+Style" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://placehold.co/400x300/png?text=Racing+Game" class="rounded-xl w-full h-48 object-cover shadow-md">
+                    </div>
+                    <!-- Добавляй новые картинки сюда по этому же шаблону -->
+                </div>
+            </div>
+            <!-- Кнопки навигации -->
+            <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600/80 hover:bg-indigo-500 text-white p-2 rounded-full shadow-lg transition">◀</button>
+            <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-indigo-600/80 hover:bg-indigo-500 text-white p-2 rounded-full shadow-lg transition">▶</button>
+        </div>
+        <!-- Индикация (можно добавить точки, но пока не нужно) -->
+        <p class="text-center text-gray-500 text-sm mt-4">Листай вбок или нажимай стрелки</p>
+    </section>
+
+    <!-- 6. Контакты (почта и т.д.) -->
+    <section class="text-center border-t border-neutral-800 pt-12">
+        <h2 class="text-2xl font-bold mb-4">Контакты</h2>
+        <p class="text-gray-400">По вопросам сотрудничества или просто пообщаться:</p>
+        <a href="mailto:tvoia@pochta.ru" class="text-indigo-400 hover:text-indigo-300 text-lg mt-2 inline-block">tvoia@pochta.ru</a>
+        <div class="flex justify-center gap-6 mt-6">
+            <!-- Можно добавить иконки соцсетей, но пока просто текст -->
+            <span class="text-gray-500">Telegram: @carzenjoyer</span>
+            <span class="text-gray-500">Instagram: @carzenjoyer</span>
+        </div>
+    </section>
 </main>
 
-<footer class="text-center text-gray-500 py-8 text-sm border-t border-neutral-800 mt-20">
+<footer class="text-center text-gray-500 py-6 text-sm border-t border-neutral-800">
     CarZEnjoyer — создано с любовью к автомобилям
 </footer>
+
+<script>
+    // Галерея: прокрутка по стрелкам
+    const container = document.getElementById('galleryContainer');
+    const track = document.getElementById('galleryTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.gallery-item');
+    const itemWidth = items[0]?.offsetWidth + 24; // ширина + gap (1.5rem = 24px)
+
+    function updateGallery() {
+        if (!container || !track) return;
+        const scrollAmount = currentIndex * itemWidth;
+        track.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    nextBtn?.addEventListener('click', () => {
+        const maxIndex = items.length - 1;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateGallery();
+        }
+    });
+
+    prevBtn?.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateGallery();
+        }
+    });
+
+    // При изменении размера окна пересчитываем ширину
+    window.addEventListener('resize', () => {
+        const newWidth = items[0]?.offsetWidth + 24;
+        if (newWidth) {
+            itemWidth = newWidth;
+            updateGallery();
+        }
+    });
+</script>
 </body>
 </html>
