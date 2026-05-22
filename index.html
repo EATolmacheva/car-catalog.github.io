@@ -217,7 +217,7 @@
         .swiper {
             width: 100%;
             height: 100%;
-            padding: 0 20px; /* отступы для стрелок */
+            padding: 0 40px; /* отступы для стрелок */
         }
         .swiper-slide {
             text-align: center;
@@ -227,7 +227,7 @@
         }
         .swiper-slide img {
             display: block;
-            width: 900%;
+            width: 100%;
             height: 380px;
             object-fit: cover;
             border-radius: 0.75rem;
@@ -258,6 +258,15 @@
                 font-size: 14px;
             }
         }
+        /* Растягиваем контейнер галереи на всю ширину окна */
+.full-width-gallery {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
     </style>
 
     <script>
